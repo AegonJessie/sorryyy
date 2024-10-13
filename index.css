@@ -1,0 +1,254 @@
+body {
+  margin: 0;
+  overflow: hidden;
+  background-color: #ffe6e6;
+  color: white;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  text-align: center;
+}
+
+h1 {
+  margin-top: 100px;
+  font-size: 4em;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 2;
+  position: relative;
+}
+
+p {
+  font-size: 1.8em;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  z-index: 2;
+  position: relative;
+}
+
+span {
+  font-size: 2.5em;
+}
+
+.hrt {
+  position: fixed;
+  top: 200px;
+  right: 415px;
+  animation: hrt-pulse 3s infinite;
+}
+
+button {
+  background-color: #ff3366;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.2em;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  border-radius: 20px;
+  cursor: pointer;
+  position: fixed;
+  bottom: 30px;
+  right: 90px;
+  transition: background-color 0.3s;
+  z-index: 2;
+  overflow: hidden;
+}
+
+button:hover {
+  background-color: #ff3131;
+  box-shadow: 0px 0px 15px rgba(255, 49, 49, 0.7);
+}
+
+/* Ripple animation on the button */
+button::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300%;
+  height: 300%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%) scale(0);
+  border-radius: 50%;
+  animation: ripple 3s infinite;
+}
+
+@keyframes ripple {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+  }
+  70% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+#heartCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.pulsating-heart {
+  position: fixed;
+  left: calc(50% - 150px);
+  top: 175px;
+  width: 300px;
+  height: 300px;
+  background-color: #ff3366;
+  transform: rotate(-45deg);
+  animation: pulse 2s infinite;
+  box-shadow: 0px 0px 15px rgba(255, 51, 102, 0.7);
+  z-index: 0;
+}
+
+.pulsating-heart::before,
+.pulsating-heart::after {
+  content: "";
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background-color: #ff3366;
+  border-radius: 50%;
+}
+
+.pulsating-heart::before {
+  top: -150px;
+  left: 0;
+}
+
+.pulsating-heart::after {
+  left: 150px;
+  top: 0;
+}
+
+.pulsating-letter {
+  position: absolute;
+  font-size: 18em;
+  font-weight: bold;
+  animation: hrt-pulse 2s infinite;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
+  z-index: 2;
+}
+
+#pulsatingI {
+  left: calc(50% - 550px);
+  top: 100px;
+}
+
+#pulsatingU {
+  right: calc(50% - 550px);
+  top: 100px;
+}
+
+@keyframes hrt-pulse {
+  0% {
+    transform: scale(0.5);
+  }
+  50% {
+    transform: scale(0.8);
+  }
+  100% {
+    transform: scale(0.5);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1) rotate(-45deg);
+  }
+  50% {
+    transform: scale(1.2) rotate(-45deg);
+  }
+  100% {
+    transform: scale(1) rotate(-45deg);
+  }
+}
+
+audio {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+}
+
+/* Butterfly CSS */
+.butterfly_container {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  pointer-events: none;
+}
+.butterfly_container div {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100px;
+  height: 100px;
+  margin-left: -50px;
+  margin-top: -50px;
+  transform-style: preserve-3d;
+}
+.butterfly_container figure.butterfly {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100px;
+  height: 100px;
+  margin-left: -50px;
+  margin-top: -50px;
+  transform-style: preserve-3d;
+  transform-origin: 50% 50%;
+}
+.butterfly_container figure.butterfly .wing {
+  position: absolute;
+  width: 50px;
+  height: 100px;
+  transform-style: preserve-3d;
+  transform-origin: 50% 50%;
+}
+.butterfly_container figure.butterfly .wing.right {
+  animation: right-wing-flap 1s ease-in-out infinite;
+  transform-origin: 50px 50px;
+  transform: translate3d(0px, 0, 0) scaleX(-1) rotate3d(0, 1, 0, 45deg);
+}
+.butterfly_container figure.butterfly .wing.left {
+  animation: left-wing-flap 1s ease-in-out infinite;
+  transform-origin: 50px 50px;
+}
+.butterfly_container figure.butterfly .wing use {
+  display: block;
+  transform-style: preserve-3d;
+  fill: #1cb1f2;
+}
+.svg-defs {
+  position: absolute;
+  height: 0;
+  width: 0;
+}
+
+/* Keyframes for wing flapping */
+@keyframes left-wing-flap {
+  0% {
+    transform: translate3d(0, 0, 0) scaleX(1) rotate3d(0, 1, 0, 60deg);
+  }
+  50% {
+    transform: translate3d(0, 0, 0) scaleX(1) rotate3d(0, 1, 0, -70deg);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scaleX(1) rotate3d(0, 1, 0, 60deg);
+  }
+}
+@keyframes right-wing-flap {
+  0% {
+    transform: translate3d(0, 0, 0) scaleX(-1) rotate3d(0, 1, 0, 60deg);
+  }
+  50% {
+    transform: translate3d(0, 0, 0) scaleX(-1) rotate3d(0, 1, 0, -70deg);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scaleX(-1) rotate3d(0, 1, 0, 60deg);
+  }
+}
